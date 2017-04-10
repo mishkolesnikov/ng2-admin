@@ -100,10 +100,10 @@ export class NgaMenuComponent implements OnInit {
 
   menuItems: List<NgaMenuItem>;
 
-  selectedMenuItem: NgaMenuItem;
-
   @Output() hoverItem = new EventEmitter<any>();
   @Output() toogleSubMenu = new EventEmitter<any>();
+
+  private selectedMenuItem: NgaMenuItem;
 
   constructor(private menuService: NgaMenuService) { }
 
@@ -125,7 +125,14 @@ export class NgaMenuComponent implements OnInit {
   }
 
   onSelectItem(item: NgaMenuItem) {
+    if (this.selectedMenuItem) {
+      this.selectedMenuItem.selected = false;
+      this.menuService.resetMenuItems(this.selectedMenuItem);
+    }
+
     this.menuService.selectMenuItem(item);
+
+    this.selectedMenuItem = item;
   }
 
 }

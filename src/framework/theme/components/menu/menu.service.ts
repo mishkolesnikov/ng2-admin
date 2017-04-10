@@ -23,7 +23,7 @@ export class NgaMenuService {
   constructor(@Optional() private config: NgaMenuModuleConfig,
                           private router: Router) {
 
-    this.menuItems = this.config.menuItems;
+    this.menuItems = List(this.config.menuItems);
   }
 
   getMenuItems() {
@@ -50,21 +50,31 @@ export class NgaMenuService {
     }
   }
 
+  resetMenuItems(prevSelectedItem: NgaMenuItem) {
+    prevSelectedItem.selected = false;
+
+    if (prevSelectedItem.parent) {
+      prevSelectedItem.parent.expanded = false;
+
+      this.resetMenuItems(prevSelectedItem.parent);
+    }
+  }
+
   private prepareMenuItems(items: List<NgaMenuItem>) {
     items.forEach(i => this.prepareMenuItem(i));
   }
 
-  private prepareMenuItem(parent: NgaMenuItem) {
-    if (parent.children && parent.children.size > 0) {
-      const firstItemWithoutParent = parent.children.filter(c => c.parent === null || c.parent === undefined).first();
+  private prepareMenuItem(item: NgaMenuItem) {
+    if (item.children && item.children.size > 0) {
+      const firstItemWithoutParent = item.children.filter(c => c.parent === null || c.parent === undefined).first();
 
       if (firstItemWithoutParent) {
-        firstItemWithoutParent.parent = parent;
+        firstItemWithoutParent.parent = item;
 
         this.prepareMenuItem(firstItemWithoutParent);
       }
-    } else if (parent.parent) {
-      this.prepareMenuItem(parent.parent);
+    } else if (item.parent) {
+      this.prepareMenuItem(item.parent);
     }
   }
 
