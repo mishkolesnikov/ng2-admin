@@ -38,7 +38,13 @@ export class NgaMenuService {
   }
 
   selectMenuItem(item: NgaMenuItem) {
-    console.log(item);
+    item.selected = true;
+
+    if (item.parent) {
+      item.parent.expanded = true;
+
+      this.selectMenuItem(item.parent);
+    }
   }
 
   private prepareMenuItems(items: List<NgaMenuItem>) {
@@ -47,12 +53,12 @@ export class NgaMenuService {
 
   private prepareMenuItem(parent: NgaMenuItem) {
     if (parent.children && parent.children.size > 0) {
-      const childWithoutParent = parent.children.filter(c => c.parent === null || c.parent === undefined).first();
+      const firstItemWithoutParent = parent.children.filter(c => c.parent === null || c.parent === undefined).first();
 
-      if (childWithoutParent) {
-        childWithoutParent.parent = parent;
+      if (firstItemWithoutParent) {
+        firstItemWithoutParent.parent = parent;
 
-        this.prepareMenuItem(childWithoutParent);
+        this.prepareMenuItem(firstItemWithoutParent);
       }
     } else if (parent.parent) {
       this.prepareMenuItem(parent.parent);
