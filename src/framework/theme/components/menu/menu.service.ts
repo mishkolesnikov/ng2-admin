@@ -21,13 +21,11 @@ export class NgaMenuService {
     this.menuItems = this.config.menuItems;
   }
 
-  getMenuItems(): Observable<List<NgaMenuItem>> {
-    return Observable.create((observer: any) => {
-      this.prepareMenuItems(this.menuItems);
+  getMenuItems() {
+    this.prepareMenuItems(this.menuItems);
 
-      observer.next(this.menuItems);
-      observer.complete();
-    });
+    this.menuItemsChanges$.next(this.menuItems);
+    this.menuItemsChanges$.complete();
   }
 
   addMenuItem(item: NgaMenuItem) {

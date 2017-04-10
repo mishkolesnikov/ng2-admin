@@ -108,11 +108,10 @@ export class NgaMenuComponent implements OnInit {
   constructor(private menuService: NgaMenuService) { }
 
   ngOnInit() {
-    this.menuService.getMenuItems()
-      .subscribe((data: List<NgaMenuItem>) => this.menuItems = data);
-
     this.menuService.menuItemsChanges
       .subscribe((data: List<NgaMenuItem>) => this.menuItems = data);
+
+    this.menuService.getMenuItems();
   }
 
   onHoverItem(item: NgaMenuItem) {
