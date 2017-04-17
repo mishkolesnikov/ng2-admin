@@ -12,6 +12,8 @@ import { PAGES_MENU } from './pages.menu';
     <div class="al-main">
       <div class="al-content">
         <ba-content-top></ba-content-top>
+        <iframe-component></iframe-component>
+        <ckeditor-component></ckeditor-component>
         <router-outlet></router-outlet>
       </div>
     </div>
@@ -32,7 +34,7 @@ import { PAGES_MENU } from './pages.menu';
 })
 export class Pages {
 
-  constructor(private _menuService: BaMenuService,) {
+  constructor(private _menuService: BaMenuService) {
   }
 
   ngOnInit() {

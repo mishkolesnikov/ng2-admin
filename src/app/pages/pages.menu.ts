@@ -30,7 +30,7 @@ export const PAGES_MENU = [
             path: 'ckeditor',
             data: {
               menu: {
-                title: 'general.menu.ck_editor',
+                title: 'ckeditor',
               }
             }
           }
@@ -239,6 +239,17 @@ export const PAGES_MENU = [
             }
           }
         ]
+      },
+      {
+        path: 'iframes',
+        data: {
+          menu: {
+            title: 'Iframes',
+            icon: 'ion-android-warning',
+            selected: false,
+            expanded: false
+          }
+        }
       },
       {
         path: '',

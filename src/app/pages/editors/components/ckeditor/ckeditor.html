@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" [hidden]="isHidden">
   <div class="col-md-12">
     <ba-card title="ckeditor" baCardClass="with-scroll">
       <ckeditor [(ngModel)]="ckeditorContent" [config]="config"></ckeditor>

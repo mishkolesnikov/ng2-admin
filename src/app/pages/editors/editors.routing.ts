@@ -1,7 +1,7 @@
 import { Routes, RouterModule }  from '@angular/router';
 
 import { Editors } from './editors.component';
-import { Ckeditor } from './components/ckeditor/ckeditor.component';
+import { CkeditorPageComponent } from './components/ckeditor/ckeditor-page.component';
 
 // noinspection TypeScriptValidateTypes
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '',
     component: Editors,
     children: [
-      { path: 'ckeditor', component: Ckeditor }
+      { path: 'ckeditor', component: CkeditorPageComponent }
     ]
   }
 ];

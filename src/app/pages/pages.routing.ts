@@ -1,6 +1,7 @@
 import { Routes, RouterModule }  from '@angular/router';
 import { Pages } from './pages.component';
 import { ModuleWithProviders } from '@angular/core';
+import { IframePageComponent } from './iframes/iframe-page.component';
 // noinspection TypeScriptValidateTypes
 
 // export function loadChildren(path) { return System.import(path); };
@@ -26,7 +27,8 @@ export const routes: Routes = [
       { path: 'ui', loadChildren: 'app/pages/ui/ui.module#UiModule' },
       { path: 'forms', loadChildren: 'app/pages/forms/forms.module#FormsModule' },
       { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule' },
-      { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule' }
+      { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule' },
+      { path: 'iframes', component: IframePageComponent }
     ]
   }
 ];
