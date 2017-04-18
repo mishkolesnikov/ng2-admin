@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import './ckeditor.loader';
 import 'ckeditor';
@@ -16,14 +16,19 @@ export class Ckeditor {
     uiColor: '#F0F3F4',
     height: '600',
   };
-  public isHidden: boolean;
+  private isHidden: boolean = true;
+  private isLoaded: boolean = false;
+  private selfRouteUrl: string = '/pages/editors/ckeditor';
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
-    this.route.url.subscribe((data: any) => {
-      this.isHidden = !(this.route['_routerState'].snapshot.url === '/pages/editors/ckeditor');
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.isLoaded = this.isLoaded || val.url == this.selfRouteUrl;
+        this.isHidden = val.url != this.selfRouteUrl;
+      }
     });
   }
 }

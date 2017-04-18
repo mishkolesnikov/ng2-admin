@@ -30,7 +30,7 @@ export const PAGES_MENU = [
             path: 'ckeditor',
             data: {
               menu: {
-                title: 'ckeditor',
+                title: 'CKEditor',
               }
             }
           }
