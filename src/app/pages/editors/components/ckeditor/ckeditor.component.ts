@@ -16,8 +16,8 @@ export class Ckeditor {
     uiColor: '#F0F3F4',
     height: '600',
   };
-  private isHidden: boolean = true;
-  private isLoaded: boolean = false;
+  public isHidden: boolean = true;
+  public isLoaded: boolean = false;
   private selfRouteUrl: string = '/pages/editors/ckeditor';
 
   constructor(private router: Router) {

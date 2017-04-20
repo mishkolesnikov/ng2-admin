@@ -8,8 +8,8 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 
 export class IframeComponent {
-  private isHidden;
-  private isLoaded = false;
+  public isHidden;
+  public isLoaded = false;
   private selfRoute = '/pages/iframes';
 
   constructor(private router: Router) { }
